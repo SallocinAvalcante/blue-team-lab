@@ -57,7 +57,7 @@ Todas as imagens estão na pasta `screenshots/` e mostram o ambiente funcionando
 
 ### 🔹 Zabbix
 - ![Subindo Docker](screenshots/Zabbix/Subindo%20Docker.png)
-- ![Configuração IP](screenshots/Zabbix/Configuração%20IP%20na%20zabbix_agentd.conf.png)
+- ![Configuração IP](screenshots/Zabbix/Configura%C3%A7%C3%A3o%20IP%20%20na%20zabbix_agentd.conf.png)
 - ![Alteração IP Host](screenshots/Zabbix/Alteração%20IP%20Host%20para%20comunicar%20com%20agente.png)
 - ![ZBX Verde](screenshots/Zabbix/ZBX%20verde.png)
 - ![Criando Trigger](screenshots/Zabbix/Criando%20Trigger.png)
