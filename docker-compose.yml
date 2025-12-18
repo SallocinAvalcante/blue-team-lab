@@ -1,0 +1,58 @@
+version: '3'
+services:
+#Zabbix
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:latest
+    environment:
+      - DB_SERVER_HOST=zabbix-db
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbixpwd
+      - POSTGRES_DB=zabbix
+    ports:
+      - "10051:10051"
+    depends_on:
+      - zabbix-db
+
+  zabbix-db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbixpwd
+      - POSTGRES_DB=zabbix
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:latest
+    environment:
+      - DB_SERVER_HOST=zabbix-db
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbixpwd
+      - POSTGRES_DB=zabbix
+      - ZBX_SERVER_HOST=zabbix-server
+    ports:
+      - "8080:8080"
+# Splunk
+  splunk:
+    image: splunk/splunk:latest
+    container_name: splunk
+    environment:
+      - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=changeme
+    ports:
+      - "8000:8000"
+      - "8088:8088"
+    volumes:
+      - /mnt/bigdisk/splunk-data:/opt/splunk/var
+      - /var/log:/host_logs
+      - ./demo2.log:/host_logs/demo2.log
+
+# Snort
+  snort:
+    image: ciscotalos/snort3
+    container_name: snort
+    network_mode: "host"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    volumes:
+     - ./snort-rules:/etc/snort/rules
