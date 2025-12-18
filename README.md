@@ -21,7 +21,7 @@ mini-soc-lab/
 ## 🚀 Ferramentas Utilizadas
 
 - **Zabbix** → Monitoramento de CPU, memória e disponibilidade do servidor.  
-- **Splunk** → Coleta e análise de logs do sistema (ex.: tentativas de login falhas).  
+- **Splunk** → Coleta e análise de logs do sistema (ex.: tentativas de login falhas, em nosso caso eventos simulados em demo.log).  
 - **Snort** → IDS para detectar tráfego suspeito (ex.: ICMP ping).  
 
 ---
@@ -39,9 +39,9 @@ mini-soc-lab/
 
 **Splunk**  
 - Subir container via `docker-compose`.  
-- Configurar coleta de `/var/log/auth.log` e `/var/log/syslog`.  
-- Rodar query: `index=main "Failed password"`.  
-- Evidência: print da query mostrando tentativas de login falhas.  
+- Configurar coleta de arquivos customizados (demo.log) via Data Input.  
+- Ajustar event break para Every line e timestamp %Y-%m-%d %H:%M:%S. 
+- Evidência: prints do Splunk mostrando o container saudável, interface aberta e configuração de Data Input. 
 
 **Snort**  
 - Instalar no host via `apt`.  
