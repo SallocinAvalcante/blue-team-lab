@@ -6,7 +6,7 @@ O objetivo é mostrar como integrar ferramentas de monitoramento, análise de lo
 ---
 
 ## 📂 Estrutura do Repositório
-mini-soc-lab/ 
+blue-team-lab 
 ├── README.md 
 ├── docker-compose.yml 
 ├── configs/ 
