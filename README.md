@@ -6,7 +6,7 @@ O objetivo é mostrar como integrar ferramentas de monitoramento, análise de lo
 ---
 
 ## 📂 Estrutura do Repositório
-blue-team-lab/
+'''blue-team-lab/
 ├── README.md
 ├── docker-compose.yml
 ├── configs/
@@ -14,7 +14,7 @@ blue-team-lab/
 ├── screenshots/
 │   ├── Zabbix/
 │   └── Snort + Splunk/
-
+'''
 
 
 ---
