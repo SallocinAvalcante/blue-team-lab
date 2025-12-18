@@ -1,65 +1,89 @@
-Mini SOC Lab (Zabbix + Splunk + Snort)
-Este projeto demonstra um laboratório simples de Security Operations Center (SOC) rodando em um servidor EC2. O objetivo é mostrar como integrar ferramentas de monitoramento, análise de logs e detecção de intrusão em um ambiente real.
+# 🛡️ Mini SOC Lab (Zabbix + Splunk + Snort)
 
-Ferramentas utilizadas
-Zabbix → Monitoramento de CPU, memória e disponibilidade do servidor.
+Este projeto demonstra um laboratório simples de Security Operations Center (SOC) rodando em um servidor EC2.  
+O objetivo é mostrar como integrar ferramentas de monitoramento, análise de logs e detecção de intrusão em um ambiente real.
 
-Splunk → Coleta e análise de logs do sistema (ex.: tentativas de login falhas).
+---
 
-Snort → IDS para detectar tráfego suspeito (ex.: ICMP ping).
+## 📂 Estrutura do Repositório
+mini-soc-lab/ 
+├── README.md 
+├── docker-compose.yml 
+├── configs/ 
+│ └── local.rules 
+└── screenshots/ 
+├── Zabbix/ 
+├── Snort + Splunk/
 
-Estrutura do repositório
-mini-soc-lab/ ├── README.md ├── docker-compose.yml ├── configs/ │ └── local.rules └── screenshots/ ├── zabbix-dashboard.png ├── zabbix-trigger.png ├── splunk-query.png └── snort-alert.png
 
-Passo a passo resumido
-1. Preparação
-Instalar Docker e Docker Compose.
+---
 
-Criar diretório soc-lab com subpastas configs e screenshots.
+## 🚀 Ferramentas Utilizadas
 
-2. Zabbix
-Subir containers via docker-compose.
+- **Zabbix** → Monitoramento de CPU, memória e disponibilidade do servidor.  
+- **Splunk** → Coleta e análise de logs do sistema (ex.: tentativas de login falhas).  
+- **Snort** → IDS para detectar tráfego suspeito (ex.: ICMP ping).  
 
-Configurar trigger simples (CPU > 80%).
+---
 
-Evidência: print do dashboard e trigger disparado.
+## ⚙️ Passo a Passo Resumido
 
-3. Splunk
-Subir container via docker-compose.
+**Preparação**  
+- Instalar Docker e Docker Compose.  
+- Criar diretório `soc-lab` com subpastas `configs` e `screenshots`.  
 
-Configurar coleta de /var/log/auth.log e /var/log/syslog.
+**Zabbix**  
+- Subir containers via `docker-compose`.  
+- Configurar trigger simples (CPU > 80%).  
+- Evidência: prints do dashboard e trigger disparado.  
 
-Rodar query: index=main "Failed password"
+**Splunk**  
+- Subir container via `docker-compose`.  
+- Configurar coleta de `/var/log/auth.log` e `/var/log/syslog`.  
+- Rodar query: `index=main "Failed password"`.  
+- Evidência: print da query mostrando tentativas de login falhas.  
 
-Evidência: print da query mostrando tentativas de login falhas.
+**Snort**  
+- Instalar no host via `apt`.  
+- Criar regra em `configs/local.rules` para detectar ICMP ping.  
+- Executar Snort e gerar alerta com ping.  
+- Evidência: print do console mostrando alerta.  
 
-4. Snort
-Instalar no host via apt.
+---
 
-Criar regra em configs/local.rules para detectar ICMP ping.
+## 📸 Evidências
 
-Executar Snort e gerar alerta com ping.
+Todas as imagens estão na pasta `screenshots/` e mostram o ambiente funcionando em tempo real.
 
-Evidência: print do console mostrando alerta.
+### 🔹 Zabbix
+- ![Subindo Docker](screenshots/Zabbix/Subindo%20Docker.png)
+- ![Configuração IP](screenshots/Zabbix/Configuração%20IP%20na%20zabbix_agentd.conf.png)
+- ![Alteração IP Host](screenshots/Zabbix/Alteração%20IP%20Host%20para%20comunicar%20com%20agente.png)
+- ![ZBX Verde](screenshots/Zabbix/ZBX%20verde.png)
+- ![Criando Trigger](screenshots/Zabbix/Criando%20Trigger.png)
+- ![Trigger Funcionando](screenshots/Zabbix/Trigger%20Funcionando%20no%20Problems.png)
+- ![Dashboard Server](screenshots/Zabbix/DashBoard%20server.png)
+- ![Latest Data](screenshots/Zabbix/Latest%20Data%20Pos%20Execucao%20Trigger.png)
 
-Evidências
-Adicione aqui os prints que estão na pasta screenshots/:
+### 🔹 Snort
+- ![Snort ativo](screenshots/Snort%20+%20Splunk/Snort/Snort%20ativo.png)
+- ![Snort configurado](screenshots/Snort%20+%20Splunk/Snort/Snort%20configurado%20para%20monitorar.png)
+- ![Snort monitorando ping](screenshots/Snort%20+%20Splunk/Snort/Snort%20Monitorando%20ping´s.png)
 
-Zabbix Dashboard
+### 🔹 Splunk
+- ![Saída do Docker](screenshots/Snort%20+%20Splunk/Saida%20do%20docker%20adicionando%20splunk%20e%20snort.png)
+- ![Splunk Healthy](screenshots/Snort%20+%20Splunk/Splunk/Splunk%20Healthy%20no%20terminal.png)
+- ![Splunk aberto](screenshots/Snort%20+%20Splunk/Splunk/Splunk%20aberto.png)
+- ![Data Input](screenshots/Snort%20+%20Splunk/Splunk/Data%20Input.png)
 
-Zabbix Trigger
+---
 
-Splunk Query
+## 🎯 Conclusão
 
-Snort Alert
-
-Conclusão
 Este laboratório demonstra três pilares de um SOC:
 
-Monitoramento (Zabbix)
-
-Análise de logs (Splunk)
-
-Detecção de intrusão (Snort)
+- **Monitoramento (Zabbix)**  
+- **Análise de logs (Splunk)**  
+- **Detecção de intrusão (Snort)**  
 
 Com isso, é possível identificar problemas de desempenho, falhas de autenticação e tráfego suspeito em tempo real.
